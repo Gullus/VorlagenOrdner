@@ -1,0 +1,38 @@
+﻿<local:InitSeite x:Class="VorlagenOrdner.Seiten.SeiteBereich"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VorlagenOrdner.Seiten"
+             xmlns:daten="clr-namespace:VorlagenOrdner.Klassen"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="5" x:Name="GridDaten" DataContext="{x:Type daten:TBereichItem }">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <TextBlock Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Bereich bearbeiten"/>
+
+            <Label Content="Bezeichnung Bereich" Grid.Row="1"  Grid.ColumnSpan="3"/>
+            <TextBox Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding Bezeichnung}"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+        <Button Content="Neuer Bereich" Click="Click_NeuerBereich"/>
+        <Button Content="Neues Thema" Grid.Column="1" Click="Click_NeuesThema"/>
+        <Button Content="Bereich Löschen" Grid.Row="1" Click="Click_Loeschen"/>
+        <Button Content="Eintragen" Grid.Row="1" Grid.Column="1" />
+        </Grid>
+    </Grid>
+</local:InitSeite>
