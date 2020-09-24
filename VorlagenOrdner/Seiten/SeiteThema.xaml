@@ -9,24 +9,20 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid Margin="5" x:Name="GridDaten" DataContext="{x:Type daten:TThemaItem }">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="800" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Border Grid.Column="1" BorderBrush="Gainsboro" BorderThickness="1" Grid.RowSpan="3">
-            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+            <ScrollViewer>
                 <Image x:Name="JgImage" Stretch="None" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="{Binding RandBild}"/>
             </ScrollViewer>
         </Border>
 
         <StackPanel Margin="0 0 10 0">
-            <TextBlock Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Thema bearbeiten"/>
+            <TextBlock x:Name="TbUeberschrift" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Thema bearbeiten"/>
 
             <Label Content="Bezeichnung Thema"/>
             <TextBox Text="{Binding Bezeichnung}"/>
@@ -49,6 +45,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <Label Content="Oben" Grid.Column="1" HorizontalAlignment="Center"/>
@@ -60,35 +57,45 @@
                 <Label Content="Unten" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center"/>
                 <daten:MarginUpDown Value="{Binding RandUnten, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" />
 
-                <Label Content="Anzahl Kopien" Grid.Row="4"/>
-                <daten:MarginUpDown Value="{Binding AnzahlKopien, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" />
+                <CheckBox Content="Ist Querformat" IsChecked="{Binding IstQuerformat}" Grid.ColumnSpan="3" Grid.Row="5" Margin="5"/>
+                <CheckBox Content="In Farbe drucken" IsChecked="{Binding IstFarbe}" Grid.ColumnSpan="3" Grid.Row="6" Margin="5"/>
+            </Grid>
 
-                <CheckBox Content="Ist Querformat" IsChecked="{Binding IstQuerformat}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="5" Margin="40 5 0 0"/>
+            <Label Content="Bemerkung"/>
+            <TextBox Text="{Binding Bemerkung}" Height="80"/>
 
+            <Label Content="Anzahl Kopien"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <daten:MarginUpDown Value="{Binding AnzahlKopien, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </Grid>
+
+            <StackPanel x:Name="GridDrucker" Grid.Row="1" DataContext="{x:Type daten:TJgDrucker}">
+                <Label Content="Drucker"/>
+                <TextBox Text="{Binding Drucker}" Margin="5 0 5 0" IsReadOnly="True" IsEnabled="False"/>
+            </StackPanel>
+
+            <Grid Margin="5 10 5 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+
+                <Button Content="Dokument drucken" Click="Click_Drucken" Grid.ColumnSpan="2"/>
+                <Button Content="Neues Thema" Click="Click_NeuesThema" Grid.Row="1" x:Name="BtThema"/>
+                <Button Content="Neue Vorlage" Grid.Column="1" Click="Click_NeueVorlage" Grid.Row="1"/>
+                <Button Content="Thema Löschen" Grid.Row="2" Click="Click_Loeschen" x:Name="BtLoeschen"/>
+                <Button Content="Auswahl Drucker" Grid.Row="2" Grid.Column="1" Click="Click_Drucker"/>
             </Grid>
         </StackPanel>
-
-        <StackPanel x:Name="GridDrucker" Grid.Row="1" DataContext="{x:Type daten:TJgDrucker}">
-            <Label Content="Drucker"/>
-            <TextBlock Text="{Binding Drucker}" Margin="5 0 5 0"/>
-        </StackPanel>
-
-        <Grid Grid.Row="2" Margin="0 0 10 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-
-            <Button Content="Dokument drucken" Click="Click_Drucken" Grid.ColumnSpan="2"/>
-            <Button Content="Neues Thema" Click="Click_NeuesThema" Grid.Row="1"/>
-            <Button Content="Neue Vorlage" Grid.Column="1" Click="Click_NeueVorlage" Grid.Row="1"/>
-            <Button Content="Thema Löschen" Grid.Row="2" Click="Click_Loeschen"/>
-            <Button Content="Drucker" Grid.Row="2" Grid.Column="1" Click="Click_Drucker"/>
-        </Grid>
     </Grid>
 </local:InitSeite>

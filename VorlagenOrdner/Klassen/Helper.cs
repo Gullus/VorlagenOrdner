@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
 using System.IO;
-using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.Xml;
 
 namespace VorlagenOrdner.Klassen
 {
@@ -16,7 +10,7 @@ namespace VorlagenOrdner.Klassen
         public static string GetBildDatei(string pfad, string bildName)
         {
             return pfad + @"\Bilder\" + bildName;
-        } 
+        }
 
         public static void ComboBilderLaden(Image bild, string pfad, string bildName)
         {

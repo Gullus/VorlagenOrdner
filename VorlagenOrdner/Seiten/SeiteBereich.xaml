@@ -7,19 +7,16 @@
              xmlns:daten="clr-namespace:VorlagenOrdner.Klassen"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="5" x:Name="GridDaten" DataContext="{x:Type daten:TBereichItem }">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
+    <StackPanel Margin="5" x:Name="GridDaten" DataContext="{x:Type daten:TBereichItem }">
+        <TextBlock Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Bereich bearbeiten"/>
 
-        <StackPanel>
-            <TextBlock Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Bereich bearbeiten"/>
+        <Label Content="Bezeichnung Bereich"/>
+        <TextBox Text="{Binding Bezeichnung}"/>
 
-            <Label Content="Bezeichnung Bereich" Grid.Row="1"  Grid.ColumnSpan="3"/>
-            <TextBox Grid.Row="2" Grid.ColumnSpan="3" Text="{Binding Bezeichnung}"/>
-        </StackPanel>
-        <Grid Grid.Row="1">
+        <Label Content="Bemerkung"/>
+        <TextBox Text="{Binding Bemerkung}" Height="80"/>
+
+        <Grid Margin="5 10 5 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -29,10 +26,10 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-        <Button Content="Neuer Bereich" Click="Click_NeuerBereich"/>
-        <Button Content="Neues Thema" Grid.Column="1" Click="Click_NeuesThema"/>
-        <Button Content="Bereich Löschen" Grid.Row="1" Click="Click_Loeschen"/>
-        <Button Content="Eintragen" Grid.Row="1" Grid.Column="1" />
+            <Button Content="Neuer Bereich" Click="Click_NeuerBereich"/>
+            <Button Content="Neues Thema" Grid.Column="1" Click="Click_NeuesThema"/>
+            <Button Content="Bereich Löschen" Grid.Row="1" Click="Click_Loeschen"/>
+            <Button Content="Eintragen" Grid.Row="1" Grid.Column="1" />
         </Grid>
-    </Grid>
+    </StackPanel>
 </local:InitSeite>

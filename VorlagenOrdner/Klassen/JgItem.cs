@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Documents;
 
 namespace VorlagenOrdner.Klassen
 {
@@ -26,14 +25,8 @@ namespace VorlagenOrdner.Klassen
             Loeschen
         }
 
-        [NonSerialized]
-        private JgItem _Parent;
-        public JgItem Parent => _Parent;
-
-        public JgItem(JgItem parent)
-        {
-            _Parent = parent;
-        }
+        public JgItem()
+        { }
 
         private string _Bezeichnung = "";
         public string Bezeichnung
@@ -41,6 +34,16 @@ namespace VorlagenOrdner.Klassen
             get => _Bezeichnung;
             set {
                 _Bezeichnung = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string _Bemerkung = "";
+        public string Bemerkung
+        {
+            get => _Bemerkung;
+            set {
+                _Bemerkung = value;
                 NotifyPropertyChanged();
             }
         }
@@ -81,8 +84,7 @@ namespace VorlagenOrdner.Klassen
     {
         public ObservableCollection<TThemaItem> ListeThemen { get; set; } = new ObservableCollection<TThemaItem>();
 
-        public TBereichItem(JgItem parent)
-            : base(parent)
+        public TBereichItem()
         {
             Bezeichnung = "> Neue Bezeichnung <";
         }
@@ -167,8 +169,17 @@ namespace VorlagenOrdner.Klassen
             }
         }
 
+        private bool _IstFarbe = false;
+        public bool IstFarbe
+        {
+            get => _IstFarbe;
+            set {
+                _IstFarbe = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public TDruckItem(JgItem parent)
-            : base(parent)
         { }
     }
 

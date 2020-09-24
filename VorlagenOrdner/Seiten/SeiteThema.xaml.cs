@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Printing;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using VorlagenOrdner.Fenster;
 using VorlagenOrdner.Klassen;
@@ -44,6 +39,11 @@ namespace VorlagenOrdner.Seiten
         {
             GridDaten.DataContext = value;
             Helper.ComboBilderLaden(JgImage, _ExePfad, (value as TDruckItem).BildName);
+
+            var istSeiteThema = value is TThemaItem;
+            BtThema.Visibility = istSeiteThema ? Visibility.Visible : Visibility.Hidden;
+            TbUeberschrift.Text = istSeiteThema ? "Thema bearbeiten" : "Vorlage bearbeiten";
+            BtLoeschen.Content = istSeiteThema ? "Thema löschen" : "Vorlage löschen";
         }
 
         private void Click_DropDownOpen(object sender, EventArgs e) => BilderNamenLaden();
